@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Страница списка Автогенерации{% endblock %}
+
+{% block body %}
+<!-- Main content -->
+<section class="content">
+
+        {% if rooms|length > 0 %}
+
+            <div>There are {{ rooms|length }} elements of list. News from kommersant.ru</div>
+            <h5 class="tags" style="cursor: pointer">Tags<strong> ></strong></h5>
+            <div class="toggle" >
+            <ul>
+            {% for tag in tags %}
+                <li style="list-style-type: circle">{{ tag.name }} = {{ tag.val }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+            <br/>
+            {% set count = 1 %}
+            {% for new in rooms %}
+                {% set anchor = 'scroll-' ~ count %}
+                {% if count == rooms|length %}
+                    {% set anchor = 'scroll-last' %}
+                {% endif %}
+                {% if count == 1 %}
+                    {% set anchor = 'scroll-first' %}
+                {% endif %}
+                <div class="box box-info" style="
+                border-left: 1px solid #00c0ef !important;
+                border-right: 1px solid #00c0ef !important;
+                border-bottom: 1px solid #00c0ef !important;
+                " >
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><a id="{{ anchor }}"><span class="label label-primary" id="{{ count }}">{{ count }}</span> {{ new.title }}</a></h3>
+                    </div>
+                    <div class="box-body">
+                        <a id="{{ anchor }}">{{ new.text|raw }}</a>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                {% set count = count + 1 %}
+            {% endfor %}
+        {% else %}
+            <div>No elements have been posted yet for this list.</div>
+        {% endif %}
+
+</section>
+<!-- /.content -->
+
+{% endblock %}
