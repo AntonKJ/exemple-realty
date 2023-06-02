@@ -1,5 +1,5 @@
 # symfony
-EasyAdmin and News Page Preview
+EasyAdmin and Realty Page Preview
 
 Установка
 Выполнить ```docker-compose up -d``` из первой (корневой) папки докера
@@ -8,7 +8,7 @@ EasyAdmin and News Page Preview
 
 #Установка db mysql из корневой папки проекта
 ```
-cat news_db.sql | docker exec -it mariadb /usr/bin/mysql -u root --password=rootpwd6421 news
+cat realty_db.sql | docker exec -it mariadb-realty /usr/bin/mysql -u root --password=rootpwd6421 realty
 ```
 ```
 docker exec -it app su
